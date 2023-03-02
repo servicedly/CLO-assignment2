@@ -22,7 +22,7 @@ resource "aws_instance" "k8s" {
     module.dev_ssh_sg.security_group_id
   ]
   iam_instance_profile = "LabInstanceProfile"
-  user_data            = file("${path.module}/user_data.sh")
+  user_data            = file("${path.module}/init_kind.sh")
   
   lifecycle {
     create_before_destroy = true

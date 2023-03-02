@@ -1,4 +1,13 @@
-output "public_ip" {
-  description = "Public IP of EC2"
-  value       = aws_instance.k8s.public_ip
+# Default tags
+output "default_tags" {
+  value = {
+    "Owner" = "Manish"
+    "App"   = "Web"
+    "Project" = "CLOassignment"
+  }
+}
+
+# Prefix to identify resources
+output "prefix" {
+  value     = "assignment1"
 }
