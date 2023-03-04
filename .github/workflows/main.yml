@@ -1,4 +1,4 @@
-name: Deploy to ECR for CLO assinment
+name: Deploy to ECR
 
 on: 
   push:
