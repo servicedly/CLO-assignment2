@@ -1,4 +1,4 @@
-name: Deploy to ECR
+name: Deploy to ECR for CLO assinment
 
 on: 
   push:
@@ -6,7 +6,7 @@ on:
 
 jobs:
   build:
-    name: Build Image
+    name: Build Image for CLO 835
     runs-on: ubuntu-latest
 
     steps:
@@ -25,10 +25,10 @@ jobs:
     - name: Build and push images to Amazon ECR
       env:
         ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
-        APP_ECR_REPOSITORY: appecr
-        DB_ECR_REPOSITORY: dbecr
-        TAG_APP_Manish: v0-app
-        TAG_DB_Manish:  v0-db
+        APP_ECR_REPOSITORY: kindclusterapp
+        DB_ECR_REPOSITORY: kindclusterdb
+        TAG_APP_Manish: clo835-app
+        TAG_DB_Manish:  clo835-db
       
 
       run: |
