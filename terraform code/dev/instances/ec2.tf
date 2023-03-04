@@ -44,8 +44,8 @@ resource "aws_key_pair" "k8s" {
 }
 
 
-resource "aws_ecr_repository" "ecr" {
-  name                 = "appecr"
+resource "aws_ecr_repository" "ecrapplication" {
+  name                 = "kindclusterapp"
   #force_delete         = true
   encryption_configuration {
     encryption_type = var.encrypt_type
@@ -54,8 +54,8 @@ resource "aws_ecr_repository" "ecr" {
     scan_on_push = true
   }
 }
-resource "aws_ecr_repository" "db" {
-  name                 = "dbecr"
+resource "aws_ecr_repository" "ecrdb" {
+  name                 = "kindclusterdb"
   #force_delete         = true
   encryption_configuration {
     encryption_type = var.encrypt_type
