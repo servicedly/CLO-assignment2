@@ -1,4 +1,4 @@
-name: Deploy to ECR
+name: Deploy to ECR for CLO 835 assignment
 
 on: 
   push:
@@ -6,7 +6,7 @@ on:
 
 jobs:
   build:
-    name: Build Image for CLO 835
+    name: Build Image for CLO 835 assignment
     runs-on: ubuntu-latest
 
     steps:
