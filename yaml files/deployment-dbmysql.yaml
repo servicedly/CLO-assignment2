@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: secondary
+  name: backenddb
 spec:
   replicas: 1
   selector:
@@ -11,3 +11,18 @@ spec:
     metadata:
       labels:
         app: mysql
+    spec:
+      containers:
+      - name: backenddb
+        image: 756055132391.dkr.ecr.us-east-1.amazonaws.com/kindclusterdb:clo835-db
+        ports:
+        - containerPort: 3306
+        env:
+        - name: MYSQL_ROOT_PASSWORD
+          value: db_pass123
+        - name: DBHOST
+          value: mysqldb
+        resources:
+          requests:
+            cpu: 100m
+            memory: 100Mi
