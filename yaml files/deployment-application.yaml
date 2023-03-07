@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: primaryend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: workers
+  template:
+    metadata:
+      labels:
+        app: workers
+    spec:
+      containers:
+      - name: primaryend
+        image: 756055132391.dkr.ecr.us-east-1.amazonaws.com/kindclusterapp:clo835-app
+        ports:
+        - containerPort: 8080
+        env:
+        - name: DBHOST
+          value: "0.0.0.0"
+        - name: DBPORT
+          value: "3306"
+        - name: DBPWD
+          value: "db_pass123"  
