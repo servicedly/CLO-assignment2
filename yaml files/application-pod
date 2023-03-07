@@ -6,3 +6,12 @@ spec:
   containers:
   - name: primaryend
     image: 756055132391.dkr.ecr.us-east-1.amazonaws.com/kindclusterapp:clo835-app
+    env:
+    - name: DBHOST
+      value: "0.0.0.0"
+    - name: DBPORT
+      value: "3306"
+    - name: DBPWD
+      value: "db_pass123"
+    ports:
+    - containerPort: 8080
