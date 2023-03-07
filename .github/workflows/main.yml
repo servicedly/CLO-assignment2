@@ -28,6 +28,7 @@ jobs:
         APP_ECR_REPOSITORY: kindclusterapp
         DB_ECR_REPOSITORY: kindclusterdb
         TAG_APP_Manish: clo835-app
+        TAG_APP_Manishv1: clo835-appv1
         TAG_DB_Manish:  clo835-db
       
 
@@ -35,5 +36,7 @@ jobs:
         cd Application
         docker build -t $ECR_REGISTRY/${APP_ECR_REPOSITORY}:${TAG_APP_Manish} -f Dockerfile .
         docker push $ECR_REGISTRY/${APP_ECR_REPOSITORY}:${TAG_APP_Manish}
+        docker build -t $ECR_REGISTRY/${APP_ECR_REPOSITORY}:${TAG_APP_Manishv1} -f Dockerfilev1 .
+        docker push $ECR_REGISTRY/${APP_ECR_REPOSITORY}:${TAG_APP_Manishv1}
         docker build -t $ECR_REGISTRY/${DB_ECR_REPOSITORY}:${TAG_DB_Manish} -f Dockerfile_mysql .
         docker push $ECR_REGISTRY/${DB_ECR_REPOSITORY}:${TAG_DB_Manish}
