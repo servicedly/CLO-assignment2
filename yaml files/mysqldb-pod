@@ -6,3 +6,10 @@ spec:
   containers:
   - name: backend
     image: 756055132391.dkr.ecr.us-east-1.amazonaws.com/kindclusterdb:clo835-db
+    ports:
+    - containerPort: 3306
+    env:
+    - name: MYSQL_ROOT_PASSWORD
+      value: db_pass123
+    - name: DBPORT
+      value: "3306"
