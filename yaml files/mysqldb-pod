@@ -13,3 +13,8 @@ spec:
       value: db_pass123
     - name: DBPORT
       value: "3306"
+    resources:
+      requests:
+        cpu: 100m
+        memory: 100Mi
+    
