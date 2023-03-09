@@ -1,0 +1,42 @@
+name: Deploy to ECR for CLO 835 assignment
+
+on: 
+  push:
+    branches: [ prod ]
+
+jobs:
+  build:
+    name: Build Image for CLO 835 assignment
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Check out code
+      uses: actions/checkout@v2
+
+    - name: Login to Amazon ECR
+      id: login-ecr
+      uses: aws-actions/amazon-ecr-login@v1
+      env:
+        AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        AWS_SESSION_TOKEN: ${{ secrets.AWS_SESSION_TOKEN }}
+        AWS_REGION: us-east-1
+
+    - name: Build and push images to Amazon ECR
+      env:
+        ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
+        APP_ECR_REPOSITORY: kindclusterapp
+        DB_ECR_REPOSITORY: kindclusterdb
+        TAG_APP_Manish: clo835-app
+        TAG_APP_Manishv1: clo835-appv1
+        TAG_DB_Manish:  clo835-db
+      
+
+      run: |
+        cd Application
+        docker build -t $ECR_REGISTRY/${APP_ECR_REPOSITORY}:${TAG_APP_Manish} -f Dockerfile .
+        docker push $ECR_REGISTRY/${APP_ECR_REPOSITORY}:${TAG_APP_Manish}
+        docker build -t $ECR_REGISTRY/${APP_ECR_REPOSITORY}:${TAG_APP_Manishv1} -f Dockerfilev1 .
+        docker push $ECR_REGISTRY/${APP_ECR_REPOSITORY}:${TAG_APP_Manishv1}
+        docker build -t $ECR_REGISTRY/${DB_ECR_REPOSITORY}:${TAG_DB_Manish} -f Dockerfile_mysql .
+        docker push $ECR_REGISTRY/${DB_ECR_REPOSITORY}:${TAG_DB_Manish}
