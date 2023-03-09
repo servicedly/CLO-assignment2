@@ -1,16 +1,21 @@
 apiVersion: apps/v1
 kind: ReplicaSet
 metadata:
-  name: backenddb
+  name: mysql
+  labels:
+    app.kubernetes.io/name: mysql
+    app.kubernetes.io/component: backenddb
 spec:
-  replicas: 3
-  selector:
-    matchLabels:
-      app: mysql
-  template:
-    metadata:
-      labels:
-        app: mysql
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: mysql
+      app.kubernetes.io/component: backenddb
+  replicas: 3 
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: mysql
+        app.kubernetes.io/component: backenddb
     spec:
       containers:
       - name: backenddb
