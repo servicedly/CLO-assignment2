@@ -1,24 +1,21 @@
 apiVersion: apps/v1
 kind: ReplicaSet
 metadata:
-  name: mysql
-  labels:
-    app.kubernetes.io/name: mysql
-    app.kubernetes.io/component: backenddb
+  name: gcmsdb
+  labels:
+    app: mysql
 spec:
-  selector:
-    matchLabels:
-      app.kubernetes.io/name: mysql
-      app.kubernetes.io/component: backenddb
-  replicas: 3 
-  template:
-    metadata:
-      labels:
-        app.kubernetes.io/name: mysql
-        app.kubernetes.io/component: backenddb
+  replicas: 3
+  selector:
+    matchLabels:
+      app: mysql
+  template:
+    metadata:
+      labels:
+        app: mysql
     spec:
       containers:
-      - name: backenddb
+      - name: gcmsdb
         image: 756055132391.dkr.ecr.us-east-1.amazonaws.com/kindclusterdb:clo835-db
         ports:
         - containerPort: 3306
@@ -30,4 +27,4 @@ spec:
         resources:
           requests:
             cpu: 100m
-            memory: 100Mi  
+            memory: 100Mi

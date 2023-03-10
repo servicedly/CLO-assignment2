@@ -1,36 +1,32 @@
 apiVersion: apps/v1
-kind: Deployment
+kind: ReplicaSet
 metadata:
-  name: primaryend
-  labels:
-    app.kubernetes.io/name: employees
-    app.kubernetes.io/component: primaryend
+  name: gcmswebapp
+  labels:
+    app: employees
 spec:
-  selector:
-    matchLabels:
-      app.kubernetes.io/name: employees
-      app.kubernetes.io/component: primaryend
-  replicas: 3 
-  template:
-    metadata:
-      labels:
-        app.kubernetes.io/name: employees
-        app.kubernetes.io/component: primaryend
+  replicas: 3
+  selector:
+    matchLabels:
+      app: employees
+  template:
+    metadata:
+      labels:
+        app: employees
     spec:
       containers:
-      - name: primaryend
+      - name: gcmswebapp
         image: 756055132391.dkr.ecr.us-east-1.amazonaws.com/kindclusterapp:clo835-app
         ports:
-        - containerPort: 8080
+        - containerPort: 3306
         env:
         - name: DBHOST
           value: "0.0.0.0"
         - name: DBPORT
           value: "3306"
         - name: DBPWD
-          value: "db_pass123"
+          value: "db_pass123" 
         resources:
           requests:
             cpu: 100m
-            memory: 100Mi 
-        
+            memory: 100Mi
