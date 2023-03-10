@@ -6,7 +6,7 @@ metadata:
     app: employees
 spec:
   type: NodePort
-  externalName: mysql.globe.svc.cluster.local  
+  externalName: gcmsdb.globedb.svc.cluster.local  
   ports:
   - port: 8080
     targetPort: 8080
