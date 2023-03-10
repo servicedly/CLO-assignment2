@@ -21,7 +21,7 @@ spec:
         - containerPort: 3306
         env:
         - name: DBHOST
-          value: "0.0.0.0"
+          value: "mysql.globe.svc.cluster.local"
         - name: DBPORT
           value: "3306"
         - name: DBPWD
